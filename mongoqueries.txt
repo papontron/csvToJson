@@ -1,0 +1,13 @@
+db.pensionesprimaria2023.updateMany({},{$set:{"pensiones.$[update].disponible":true}},{arrayFilters:[{"update.disponible":false}]})
+db.pensionesprimaria2023.updateMany({},{$set:{"pensiones.$[update].estado":"pendiente"}},{arrayFilters:[{"update.estado":"atrasado","update.mes":{$gt:5}}]})
+
+
+
+"mongodb+srv://admin-cristhiam:GY3v5GT0XyZZe60U@cluster0.jbiua.mongodb.net/colegio?retryWrites=true&w=majority"
+
+mongodb+srv://adminpapucho12:4E45J0v5N2UDfki7@pirucacluster.uq8bxno.mongodb.net/jesusNazareno?retryWrites=true&w=majority
+
+
+mongoexport --uri "mongodb+srv://admin-cristhiam:GY3v5GT0XyZZe60U@cluster0.jbiua.mongodb.net/colegio?retryWrites=true&w=majority" --collection empleadosprimaria2023 --out empleadosprimaria2023.json --jsonArray
+
+mongoimport --uri "mongodb+srv://adminpapucho12:4E45J0v5N2UDfki7@pirucacluster.uq8bxno.mongodb.net/jesusNazareno?retryWrites=true&w=majority" --collection empleadosprimaria2023 --type json --jsonArray --file empleadosprimaria2023.json
